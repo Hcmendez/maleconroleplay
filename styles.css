@@ -1,13 +1,44 @@
 /* Estilos generales */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #121212;
-    color: #ffffff;
     margin: 0;
     padding: 0;
-    background: linear-gradient(180deg, #f4b2ba 0%, #bfe9ff 100%);
+    overflow: auto;
+    position: relative;
+    background-color: #121212;
+    color: #ffffff;
 }
 
+#video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%; /* Asegura que el video cubra todo el ancho */
+    min-height: 100%; /* Asegura que el video cubra todo el alto */
+    z-index: -1;
+    object-fit: cover; /* Ajusta el tamaño del video para cubrir toda la pantalla */
+}
+
+#video-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta el tamaño del video para cubrir toda la pantalla */
+    filter: brightness(0.5); /* Ajusta la oscuridad del video */
+}
+
+/* Capa semitransparente para oscurecer el video */
+#video-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Color negro semitransparente */
+    z-index: 0;
+}
+
+/* Estilos específicos del encabezado */
 header {
     background-color: #1f1f1f;
     padding: 20px;
@@ -16,6 +47,10 @@ header {
     display: flex; /* Usamos flexbox para alinear elementos */
     justify-content: space-between; /* Espacio entre el logo y los elementos del menú */
     align-items: center; /* Centra verticalmente los elementos */
+    z-index: 1; /* Asegura que el encabezado esté por encima del video de fondo */
+    width: 100%; /* Ajusta el ancho completo */
+    position: fixed; /* Fija el encabezado */
+    top: 0; /* Lo coloca en la parte superior */
 }
 
 header img.logo {
@@ -52,12 +87,12 @@ nav ul li.active a {
     background-color: rgba(255, 255, 255, 0.1); /* Fondo más claro para el menú activo */
 }
 
+/* Estilos específicos del contenido principal */
 main {
     padding: 20px;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    margin: 20px;
+    margin-top: 80px; /* Ajusta el margen superior para evitar que el contenido se superponga con el encabezado */
+    z-index: 2; /* Asegura que el contenido esté por encima del video de fondo */
 }
 
 h1 {
@@ -104,6 +139,7 @@ ul {
     border-radius: 10px;
 }
 
+/* Estilos específicos del pie de página */
 .footer {
     background-color: #1f1f1f;
     padding: 10px;
@@ -148,3 +184,4 @@ ul {
     transform: translate(-50%, -50%);
     z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
+
